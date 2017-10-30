@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Collections.Generic;
 
 using Newtonsoft.Json;
@@ -204,6 +205,50 @@ namespace WPRestApi
         public string Href { get; set; }
     }
 
+    public class Publish
+    {
+        [JsonProperty("name")]
+        public string Name { get; set; }
+        [JsonProperty("@public")]
+        public bool Public { get; set; }
+        [JsonProperty("queryable")]
+        public bool Queryable { get; set; }
+        [JsonProperty("slug")]
+        public string Slug { get; set; }
+        [JsonProperty("_links")]
+        public Links Links { get; set; }
+    }
+    public class Archive
+    {
+        [JsonProperty("href")]
+        public string Href { get; set; }
+    }
+
+    public class WpItem
+    {
+        [JsonProperty("href")]
+        public string Href { get; set; }
+    }
+
+    public class Attachment
+    {
+        [JsonProperty("description")]
+        public string Description { get; set; }
+        [JsonProperty("hierarchical")]
+        public bool Hierarchical { get; set; }
+        [JsonProperty("name")]
+        public string Name { get; set; }
+        [JsonProperty("slug")]
+        public string Slug { get; set; }
+        [JsonProperty("taxonomies")]
+        public List<Taxonomy> Taxonomies { get; set; }
+        [JsonProperty("rest_base")]
+        public string RestBase { get; set; }
+        [JsonProperty("_links")]
+        public Links Links { get; set; }
+    }
+
+
     public class Links
     {
         [JsonProperty("self")]
@@ -226,7 +271,11 @@ namespace WPRestApi
         public List<VersionHistory> VersionHistory { get; set; }
         [JsonProperty("wp:attachment")]
         public List<WpAttachment>WpAttachment { get; set; }
-    }
+        [JsonProperty("archives")]
+        public List<Archive> Archives { get; set; }
+        [JsonProperty("wp:items")]
+        public List<WpItem> WpItems { get; set; }
+}
 
     public class Page
     {
@@ -323,7 +372,37 @@ namespace WPRestApi
         [JsonProperty("categories")]
         public List<int> Categories { get; set; }
         [JsonProperty("tags")]
-        public List<object> Tags { get; set; }
+        public List<Tag> Tags { get; set; }
+        [JsonProperty("_links")]
+        public Links Links { get; set; }
+    }
+
+    public class PostRevision
+    {
+        [JsonProperty("id")]
+        public int Id { get; set; }
+        [JsonProperty("author")]
+        public int Author { get; set; }       
+        [JsonProperty("date")]
+        public DateTime Date { get; set; }
+        [JsonProperty("date_gmt")]
+        public DateTime DateGMT { get; set; }
+        [JsonProperty("guid")]
+        public Guid Guid { get; set; }
+        [JsonProperty("modified")]
+        public DateTime Modified { get; set; }
+        [JsonProperty("modified_gmt")]
+        public DateTime ModifiedGMT { get; set; }
+        [JsonProperty("parent")]
+        public int Parent { get; set; }
+        [JsonProperty("slug")]
+        public string Slug { get; set; }
+        [JsonProperty("title")]
+        public Title Title { get; set; }
+        [JsonProperty("content")]
+        public Content Content { get; set; }
+        [JsonProperty("excerpt")]
+        public Excerpt Excerpt { get; set; }
         [JsonProperty("_links")]
         public Links Links { get; set; }
     }
@@ -380,5 +459,123 @@ namespace WPRestApi
         public string SourceUrl { get; set; }
         [JsonProperty("_links")]
         public Links Links { get; set; }
+    }
+
+    public class Tag
+    {
+        [JsonProperty("id")]
+        public int Id { get; set; }
+        [JsonProperty("count")]
+        public int Count { get; set; }
+        [JsonProperty("description")]
+        public string Description { get; set; }
+        [JsonProperty("link")]
+        public string Link { get; set; }
+        [JsonProperty("name")]
+        public string Name { get; set; }
+        [JsonProperty("slug")]
+        public string Slug { get; set; }
+        [JsonProperty("taxonomy")]
+        public string Taxonomy { get; set; }
+        [JsonProperty("parent")]
+        public int Parent { get; set; }
+        [JsonProperty("meta")]
+        public List<object> Meta { get; set; }
+        [JsonProperty("_links")]
+        public Links Links { get; set; }
+    }
+
+    public class Comment
+    {
+        [JsonProperty("id")]
+        public int Id { get; set; }
+        [JsonProperty("post")]
+        public int Post { get; set; }
+        [JsonProperty("parent")]
+        public int Parent { get; set; }
+        [JsonProperty("author")]
+        public int Author { get; set; }
+        [JsonProperty("author_name")]
+        public string AuthorName { get; set; }
+        [JsonProperty("author_url")]
+        public string AuthorUrl { get; set; }
+        [JsonProperty("date")]
+        public DateTime Date { get; set; }
+        [JsonProperty("date_gmt")]
+        public DateTime DateGMT { get; set; }
+        [JsonProperty("content")]
+        public Content Content { get; set; }
+        [JsonProperty("link")]
+        public string Link { get; set; }
+        [JsonProperty("status")]
+        public string Status { get; set; }
+        [JsonProperty("type")]
+        public string Type { get; set; }
+        [JsonProperty("author_avatar_urls")]
+        public Dictionary<int, string> AuthorAvatarUrls { get; set; }
+        [JsonProperty("meta")]
+        public List<object> Meta { get; set; }
+        [JsonProperty("_links")]
+        public Links Links { get; set; }
+    }
+
+    public class PostTag
+    {
+        [JsonProperty("name")]
+        public string Name { get; set; }
+        [JsonProperty("slug")]
+        public string Slug { get; set; }
+        [JsonProperty("description")]
+        public string Description { get; set; }
+        [JsonProperty("types")]
+        public List<string> Types { get; set; }
+        [JsonProperty("hierarchical")]
+        public bool Hierarchical { get; set; }
+        [JsonProperty("rest_base")]
+        public string RestBase { get; set; }
+        [JsonProperty("_links")]
+        public Links Links { get; set; }
+    }
+
+    public class Taxonomy
+    {
+        [JsonProperty("category")]
+        public PostCategory PostCategory { get; set; }
+        [JsonProperty("post_tag")]
+        public PostTag PostTag { get; set; }
+    }
+
+    public class PostCategory
+    {
+        [JsonProperty("name")]
+        public string Name { get; set; }
+        [JsonProperty("slug")]
+        public string Slug { get; set; }
+        [JsonProperty("description")]
+        public string Description { get; set; }
+        [JsonProperty("types")]
+        public List<string> Types { get; set; }
+        [JsonProperty("hierarchical")]
+        public bool Hierarchical { get; set; }
+        [JsonProperty("rest_base")]
+        public string RestBase { get; set; }
+        [JsonProperty("_linksname")]
+        public Links Links { get; set; }
+    }
+
+    public class PostStatus
+    {
+        [JsonProperty("publish")]
+        public Publish Publish { get; set; }
+    }
+
+    public class PostType
+    {
+        [JsonProperty("post")]
+        public Post Post { get; set; }
+        [JsonProperty("page")]
+        public Page Page { get; set; }
+        [JsonProperty("attachment")]
+        public Attachment Attachment { get; set; }
     }
 }
