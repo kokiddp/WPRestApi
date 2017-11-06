@@ -1,2 +1,2 @@
 # WPRestApi
-C# Library for consuming the WordPress REST API service
+C# PCL Library for consuming the WordPress REST API service
