@@ -5,11 +5,11 @@ using System.Reflection;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("WPRestApi")]
-[assembly: AssemblyDescription("C# Library for consuming the WordPress REST API service")]
+[assembly: AssemblyDescription("C# Portable Class Library for consuming the WordPress REST API service")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Gabriele Coquillard")]
 [assembly: AssemblyProduct("WPRestApi")]
-[assembly: AssemblyCopyright("© 2017 by Gabriele Coquillard")]
+[assembly: AssemblyCopyright("© 2019 by Gabriele Coquillard")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: NeutralResourcesLanguage("en")]
@@ -24,5 +24,5 @@ using System.Reflection;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.0.2")]
-[assembly: AssemblyFileVersion("0.0.2")]
+[assembly: AssemblyVersion("0.0.4")]
+[assembly: AssemblyFileVersion("0.0.4")]
